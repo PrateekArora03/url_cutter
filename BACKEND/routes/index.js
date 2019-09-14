@@ -14,7 +14,8 @@ router.get("/:shortId", (req, res, next) => {
         return res
           .status(200)
           .json({ status: "success", message: "url not found" });
-      res.status(200).json({ url });
+      // res.status(200).json({ url });
+      res.redirect(url.originalUrl);
     }
   );
 });

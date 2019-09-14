@@ -7,11 +7,23 @@
     <title>URL CUTTER</title>
   </head>
   <body>
-    <form action="https://localhost:3000/api/new" method="post">
+    <form class="form-submit">
       <input type="text" name="url" placeholder="Shorten your link" />
-      <button class="form-submit" type="submit">Cutter</button>
+      <button type="submit">Cutter</button>
     </form>
     <div class="fetch"></div>
-    <script src="main.js"></script>
+    <script>
+      const sub_btn = document.querySelector(".form-submit");
+      sub_btn.addEventListener("submit", evt => {
+        evt.preventDefault();
+        const formData = new FormData(evt.target);
+        fetch("https://localhost:3000/api/new", {
+          method: "post",
+          body: formData
+        })
+          .then(data => console.log(data))
+          .catch(err => console.log(err));
+      });
+    </script>
   </body>
 </html>
