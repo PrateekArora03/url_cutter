@@ -3,17 +3,20 @@ const app = express();
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-const urlRoute = require("./routes/index");
+const apiRoute = require("./routes/apiIndex");
+const indexRoute = require("./routes/index");
 
 mongoose.connect(process.env.mongodb_key, { useNewUrlParser: true }, err => {
   err ? console.log(err) : console.log("connected to DB");
 });
 
 mongoose.set("useCreateIndex", true);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/api", urlRoute);
+app.use("/api", apiRoute);
+app.use("/", indexRoute);
 
 app.use((req, res, next) => {
   res.status(404).json({ err: "page not found" });
