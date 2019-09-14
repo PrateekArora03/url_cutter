@@ -1,4 +1,4 @@
-exports.shorturl = function(length = 13) {
+exports.shorturl = function(length = 5) {
   var arr = "abcdefghijklmonpqrstuvwxyz".split("");
   var str = "";
   for (let i = 0; i < length; i++) {
