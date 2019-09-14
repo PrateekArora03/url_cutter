@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const UrlShortID = require("../modules/urlShortId");
 const Schema = mongoose.Schema;
 const urlSchema = new Schema({
-  originalUrl: { type: String, required: true },
-  shortUrl: String,
+  originalUrl: { type: String, required: true, unique: true },
+  shortUrl: { type: String, unique: true },
   viewCount: { type: Number, default: 0 },
   createdAt: { type: Date, default: Date.now }
 });
