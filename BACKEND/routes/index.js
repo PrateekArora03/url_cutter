@@ -10,6 +10,10 @@ router.get("/:shortId", (req, res, next) => {
     { new: true },
     (err, url) => {
       if (err) return next(err);
+      if (!url)
+        return res
+          .status(200)
+          .json({ status: "success", message: "url not found" });
       res.status(200).json({ url });
     }
   );
